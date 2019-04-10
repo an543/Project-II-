@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title":"Test",
+	  "type":"task",
+	  "column":"done"
+    },
+    {
+      "id": 2,
+      "title":"Set Up My Labtop",
+	  "type":"task", 
+	  "column":"in-progress"
+    },
+    {
+      "id": 3,
+      "title":"eat breakfast",
+	  "type":"task", 
+	  "column":"todo"
+    }
+  ]
+}
