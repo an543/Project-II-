@@ -1,71 +1,40 @@
 import React from 'react';
+import axios from 'axios';
 
-import './App.css';
-import PageTabs from './PageTabs';
-import Page1 from './Page1';
-import Page2 from './Page2';
-
-const LARGE_DESKTOP_BREAKPOINT = 1366;
-const SMALL_DESKTOP_BREAKPOINT = 1024;
-const TABLET_BREAKPOINT = 768;
+import Nav from './Nav';
 
 class App extends React.Component {
   state = {
-    browserWidth: 0,
-    breakpoint: 'large-desktop',
-	view: 'page1'
+    tasks: [],
+    errorMessage: '',
+	head: ["todo","in-progress","review","done"]
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleResize);
-    this.handleResize();
+    this.getData();
   }
 
-  handleResize = () => {
-    const browserWidth = window.innerWidth;
-    let breakpoint = 'large-desktop';
+	getData() {
+    axios.get('https://my-json-server.typicode.com/eo65/jsonServer/tasks')
+      .then(response => {
+        this.setState({ tasks: response.data });
+      }).catch(error => {
+        this.setState({ errorMessage: error.message });
+      });
+	}
 
-    if (browserWidth < LARGE_DESKTOP_BREAKPOINT && browserWidth >= SMALL_DESKTOP_BREAKPOINT) {
-      breakpoint = 'small-desktop';
-    } else if (browserWidth < SMALL_DESKTOP_BREAKPOINT && browserWidth >= TABLET_BREAKPOINT) {
-      breakpoint = 'tablet';
-    } else if (browserWidth < TABLET_BREAKPOINT) {
-      breakpoint = 'mobile';
-    }
-
-    this.setState({ breakpoint, browserWidth });
-  }
-  
-  onViewChange(view) {
-    this.setState({ view });
-  }
-
-  wrapPage(jsx) {
-    const { view } = this.state;
+	onUpdateTaskList = (newTaskList) => {
+		this.setState({ tasks: newTaskList });
+	}
+	
+  render() {
     return (
       <div className="container">
-        <PageTabs currentView={view}
-            onViewChange={this.onViewChange.bind(this)}/>
-        {jsx}
+        <Nav tasks={this.state.tasks} header={this.state.head} onUpdateTaskList={this.onUpdateTaskList}/>
       </div>
     );
-  }
-
-  render() {
-    const { view } = this.state;
-
-    switch (view) {
-      case 'page1':
-        return (this.wrapPage(
-          <Page1 />
-        ));
-      case 'page2':
-        return (this.wrapPage(
-          <Page2 />
-        ));
-    }
-
   }
 }
 
 export default App;
+
