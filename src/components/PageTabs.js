@@ -15,6 +15,7 @@ class PageTabs extends React.Component {
 
   render () {
     return (
+
       <ul className='nav page-tabs'>
         <li className='nav-item'>
           <a className={this.isActiveTab('page1')}
@@ -26,6 +27,12 @@ class PageTabs extends React.Component {
           <a className={this.isActiveTab('page2')}
              onClick={(e) => this.onTabClick(e, 'page2')}>
             List View
+          </a>
+        </li>
+        <li className='nav-item'>
+          <a className={this.isActiveTab('pageTabs')}
+             onClick={(e) => this.onTabClick(e, 'pageTabs')}>
+            Add Task
           </a>
         </li>
       </ul>

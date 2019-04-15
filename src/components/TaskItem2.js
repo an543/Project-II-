@@ -1,29 +1,6 @@
 import React from 'react';
 
-
-
-const Page1 = props => {
-  return (
-    <div className="page-one">
-        <h3> Task Board </h3>
-
-        <table>
-            <thead>
-            <tr>
-                <th>To Do</th>
-
-                <th>In Progress</th>
-
-                <th>Review</th>
-
-                <th>Done</th>
-            </tr>
-            </thead>
-
-        </table>
-    </div>
-
-  )
+const TaskItem2 = props => {
     return (
         <li className="list-group-item">
             { props.task.title }
@@ -44,6 +21,6 @@ const Page1 = props => {
             </button>
         </li>
     )
-}
+};
 
-export default Page1;
+export default TaskItem2;
