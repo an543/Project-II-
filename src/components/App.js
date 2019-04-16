@@ -6,8 +6,7 @@ import Nav from './Nav';
 class App extends React.Component {
   state = {
     tasks: [],
-    errorMessage: '',
-	head: ["todo","in-progress","review","done"]
+    errorMessage: ''
   }
 
   componentDidMount() {
