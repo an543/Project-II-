@@ -3,7 +3,9 @@ import React from 'react';
 import './App.css';
 import PageTabs from './PageTabs';
 import TaskItem from './TaskItem';
-import Page2 from './Page2';
+import TaskItem1 from './TaskItem1';
+import TaskItem2 from './TaskItem2';
+import TaskItem3 from './TaskItem3';
 
 const LARGE_DESKTOP_BREAKPOINT = 1366;
 const SMALL_DESKTOP_BREAKPOINT = 1024;
@@ -58,6 +60,22 @@ class Nav extends React.Component {
 		taskList.column = task;
 		this.props.onUpdateTaskList(taskList);	
 	}
+	
+	markInProcess = (task) => {
+		const taskIndex = this.props.tasks.findIndex(t => t.id === task.id);
+		let taskList = this.props.tasks;
+		task.column="in-process"
+		console.log(this.props);
+		this.props.onUpdateTaskList(taskList);
+	}
+	
+	markToDo = (task) => {
+		const taskIndex = this.props.tasks.findIndex(t => t.id === task.id);
+		let taskList = this.props.tasks;
+		task.column="todo"
+		console.log(this.props);
+		this.props.onUpdateTaskList(taskList);
+	}
 
   render() {
     const { view } = this.state;
@@ -81,8 +99,27 @@ class Nav extends React.Component {
 			</table>
 		));
       case 'page2':
+		const taskItems1 = this.props.tasks.map(task => {
+		if (task.column=="done")
+			return <TaskItem1 task={task} key={task.id} markDone={this.markDone} />
+		});
+
+
+		const taskItems2 = this.props.tasks.map(task => {
+			if (task.column=="in-process")
+			return <TaskItem2 task={task} key={task.id} markDone={this.markInProcess} />
+		});
+
+		const taskItems3 = this.props.tasks.map(task => {
+			if (task.column=="todo")
+			return <TaskItem3 task={task} key={task.id} markDone={this.markToDo} />
+		});
         return (this.wrapPage(
-          <Page2 />
+			<ul className="task-list list-group">
+				{ taskItems1 }
+				{ taskItems2 }
+				{ taskItems3 }
+			</ul>
         ));
     }
 
