@@ -1,0 +1,7 @@
+.notCurrent {
+    color: darkred;
+}
+
+.current {
+    color: #000000;
+}

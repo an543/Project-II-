@@ -1,0 +1,11 @@
+.oddCard {
+    background-color: cadetblue;
+}
+
+.evenCard {
+    background-color: darkgray;
+}
+
+.fullHeight {
+    height: 100%;
+}

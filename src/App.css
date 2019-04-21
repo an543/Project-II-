@@ -1,20 +1,21 @@
-.large-desktop {
-    background-color: yellow;
+.App {
+  text-align: center;
 }
 
-.small-desktop {
-    background-color: red;
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.tablet {
-    background-color: green;
+.App-link {
+  color: black;
 }
 
-.mobile {
-    background-color: blue;
-    color: white;
-}
 
-.container {
-    padding: 10px;
-}
